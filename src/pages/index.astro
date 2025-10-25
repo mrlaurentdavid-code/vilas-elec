@@ -1,6 +1,11 @@
 ---
 // Importer le layout principal
 import Layout from '../layouts/Layout.astro';
+
+// Importer les données éditables via CMS
+import heroData from '../content/home/hero.json';
+import statsData from '../content/home/stats.json';
+import settingsData from '../content/settings/general.json';
 ---
 
 <Layout
@@ -31,7 +36,7 @@ import Layout from '../layouts/Layout.astro';
 					data-aos="fade-up"
 					data-aos-duration="1000"
 				>
-					⚡ Vilas Elec
+					{heroData.title}
 				</h1>
 
 				<!-- Sous-titre avec animation fade-up retardée -->
@@ -40,7 +45,7 @@ import Layout from '../layouts/Layout.astro';
 					data-aos="fade-up"
 					data-aos-delay="200"
 				>
-					Électricien Professionnel à Besançon
+					{heroData.subtitle}
 				</p>
 
 				<!-- Description avec animation fade-up retardée -->
@@ -49,9 +54,7 @@ import Layout from '../layouts/Layout.astro';
 					data-aos="fade-up"
 					data-aos-delay="400"
 				>
-					Expertise en installations électriques pour professionnels et particuliers
-					<br />
-					Plus de 20 ans d'expérience en Bourgogne-Franche-Comté
+					{heroData.description}
 				</p>
 
 				<!-- Boutons d'action avec animation zoom-in -->
@@ -61,10 +64,10 @@ import Layout from '../layouts/Layout.astro';
 					data-aos-delay="600"
 				>
 					<a
-						href="/contact"
+						href={heroData.ctaLink}
 						class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all duration-300 shadow-2xl hover:scale-105 transform"
 					>
-						📞 Demander un devis
+						📞 {heroData.ctaText}
 					</a>
 					<a
 						href="/services"
@@ -81,16 +84,20 @@ import Layout from '../layouts/Layout.astro';
 					data-aos-delay="800"
 				>
 					<div class="text-center">
-						<p class="text-3xl font-bold text-yellow-400">20+</p>
-						<p class="text-sm text-gray-200">Années d'expérience</p>
+						<p class="text-3xl font-bold text-yellow-400">{statsData.experience.value}</p>
+						<p class="text-sm text-gray-200">{statsData.experience.label}</p>
 					</div>
 					<div class="text-center">
-						<p class="text-3xl font-bold text-yellow-400">500+</p>
-						<p class="text-sm text-gray-200">Chantiers réalisés</p>
+						<p class="text-3xl font-bold text-yellow-400">{statsData.projects.value}</p>
+						<p class="text-sm text-gray-200">{statsData.projects.label}</p>
 					</div>
 					<div class="text-center">
-						<p class="text-3xl font-bold text-yellow-400">100%</p>
-						<p class="text-sm text-gray-200">Clients satisfaits</p>
+						<p class="text-3xl font-bold text-yellow-400">{statsData.clients.value}</p>
+						<p class="text-sm text-gray-200">{statsData.clients.label}</p>
+					</div>
+					<div class="text-center">
+						<p class="text-3xl font-bold text-yellow-400">{statsData.certifications.value}</p>
+						<p class="text-sm text-gray-200">{statsData.certifications.label}</p>
 					</div>
 				</div>
 			</div>
