@@ -1,11 +1,13 @@
 ---
 title: "Panne Électrique à Besançon et environs : Que Faire en Urgence ?"
-excerpt: "Coupure de courant, disjoncteur qui saute, odeur de brûlé ? Découvrez les gestes d'urgence à effectuer et quand appeler un électricien à Besançon, Saint-Vit et le Doubs."
-image: "https://images.unsplash.com/photo-1565674283787-59d9bc0b5d97?q=80&w=1200&auto=format&fit=crop"
-category: "Sécurité"
-date: "2025-01-21"
-author: "VILAS ELEC"
-readTime: "7 min"
+excerpt: Coupure de courant, disjoncteur qui saute, odeur de brûlé ? Découvrez
+  les gestes d'urgence à effectuer et quand appeler un électricien à Besançon,
+  Saint-Vit et le Doubs.
+image: /images/uploads/panneau-electrique-avec-fusibles-et-contacteurs-en-gros-plan-min.jpg
+category: Sécurité
+date: 2025-01-21
+author: VILAS ELEC
+readTime: 7 min
 draft: false
 keywords:
   - panne électrique Besançon
