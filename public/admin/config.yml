@@ -4,20 +4,21 @@
 # Backend (Git Gateway pour Netlify)
 backend:
   name: git-gateway
-  branch: main # ou master selon votre branche principale
-
-# Configuration locale pour tester (à commenter en production)
-# local_backend: true
+  branch: main
 
 # Publication
 publish_mode: editorial_workflow # Active le workflow de publication (brouillon → en révision → publié)
 
 # Médias (images, fichiers)
-media_folder: "public/images/uploads" # Dossier où seront stockées les images uploadées
-public_folder: "/images/uploads"      # Chemin public pour accéder aux images
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
 # Langue de l'interface
 locale: 'fr'
+
+# Éditeur markdown amélioré
+editor:
+  preview: true
 
 # Collections de contenu
 collections:
@@ -28,18 +29,38 @@ collections:
     label: "📝 Articles de Blog"
     folder: "src/content/blog"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}-{{month}}-{{slug}}"
+    editor:
+      preview: true
     fields:
-      - { label: "Titre", name: "title", widget: "string", required: true, hint: "Titre de l'article (60-70 caractères max pour SEO)" }
-      - { label: "Description courte", name: "excerpt", widget: "text", required: true, hint: "Description de 150-160 caractères pour SEO et aperçu" }
-      - { label: "Image de couverture", name: "image", widget: "image", required: true, hint: "Image principale de l'article (1200x630px recommandé)" }
-      - { label: "Catégorie", name: "category", widget: "select", options: ["Conseils", "Domotique", "Rénovation", "Sécurité", "Réglementation", "GREEN'UP"], required: true }
-      - { label: "Date de publication", name: "date", widget: "datetime", format: "YYYY-MM-DD", required: true }
-      - { label: "Auteur", name: "author", widget: "string", default: "VILAS ELEC" }
-      - { label: "Temps de lecture", name: "readTime", widget: "string", default: "5 min", hint: "Ex: '5 min'" }
-      - { label: "Brouillon", name: "draft", widget: "boolean", default: false, hint: "Article en brouillon (non publié)" }
-      - { label: "Contenu", name: "body", widget: "markdown", required: true }
-      - { label: "Mots-clés SEO", name: "keywords", widget: "list", required: false, hint: "Mots-clés pour le référencement" }
+      - label: "SEO & Métadonnées"
+        name: "seo"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Titre", name: "title", widget: "string", required: true, hint: "60-70 caractères max pour SEO", pattern: ['^.{10,70}$', "Le titre doit faire entre 10 et 70 caractères"] }
+          - { label: "Description courte (meta)", name: "excerpt", widget: "text", required: true, hint: "150-160 caractères pour SEO", pattern: ['^.{50,160}$', "La description doit faire entre 50 et 160 caractères"] }
+          - { label: "Mots-clés SEO", name: "keywords", widget: "list", required: false, hint: "5-7 mots-clés maximum", allow_add: true, max: 7 }
+
+      - label: "Visuel"
+        name: "visual"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Image de couverture", name: "image", widget: "image", required: true, hint: "1200x630px recommandé pour le partage social" }
+
+      - label: "Classification"
+        name: "classification"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Catégorie", name: "category", widget: "select", options: ["Conseils", "Domotique", "Rénovation", "Sécurité", "Réglementation", "Dépannage", "GREEN'UP"], required: true }
+          - { label: "Date de publication", name: "date", widget: "datetime", format: "YYYY-MM-DD", required: true }
+          - { label: "Auteur", name: "author", widget: "string", default: "VILAS ELEC" }
+          - { label: "Temps de lecture", name: "readTime", widget: "string", default: "5 min", hint: "Ex: '5 min', '8 min'" }
+          - { label: "Brouillon", name: "draft", widget: "boolean", default: false, hint: "Cochez pour ne pas publier l'article" }
+
+      - { label: "Contenu de l'article", name: "body", widget: "markdown", required: true, hint: "Rédigez votre article ici avec le formatage Markdown" }
 
   # ==========================================
   # 2. RÉALISATIONS / PORTFOLIO
@@ -51,9 +72,9 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Titre du projet", name: "title", widget: "string", required: true }
-      - { label: "Description courte", name: "excerpt", widget: "text", required: true }
+      - { label: "Description courte", name: "excerpt", widget: "text", required: true, hint: "1-2 phrases décrivant le projet" }
       - { label: "Image principale", name: "image", widget: "image", required: true, hint: "Photo du projet réalisé (800x800px recommandé)" }
-      - { label: "Images supplémentaires", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
+      - { label: "Images supplémentaires", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false, hint: "Ajoutez plusieurs photos du chantier" }
       - { label: "Catégorie", name: "category", widget: "select", options: ["professionnel", "renovation", "domotique", "tableau", "greenup"], required: true }
       - { label: "Lieu", name: "location", widget: "string", default: "Doubs (25)", hint: "Ex: Besançon, Saint-Vit..." }
       - { label: "Date de réalisation", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -69,37 +90,59 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Nom du client", name: "name", widget: "string", required: true, hint: "Ex: M. Dupont" }
+      - { label: "Nom du client", name: "name", widget: "string", required: true, hint: "Ex: M. Dupont ou Jean D." }
       - { label: "Ville", name: "location", widget: "string", default: "Besançon" }
       - { label: "Note (sur 5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
-      - { label: "Témoignage", name: "body", widget: "text", required: true }
+      - { label: "Témoignage", name: "body", widget: "text", required: true, hint: "Le témoignage du client" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
 
   # ==========================================
-  # 4. PAGES (Configuration des pages fixes)
+  # 4. CONTENU DE LA PAGE D'ACCUEIL
   # ==========================================
-  - name: "pages"
-    label: "📄 Pages"
+  - name: "home"
+    label: "🏠 Page d'Accueil"
     files:
-      # Page d'accueil
-      - label: "🏠 Accueil"
-        name: "home"
-        file: "src/content/pages/home.md"
+      - label: "Hero (Section principale)"
+        name: "hero"
+        file: "src/content/home/hero.json"
         fields:
-          - { label: "Titre Hero", name: "heroTitle", widget: "string" }
-          - { label: "Sous-titre Hero", name: "heroSubtitle", widget: "text" }
-          - { label: "Image Hero", name: "heroImage", widget: "image" }
-          - { label: "Texte CTA (bouton)", name: "ctaText", widget: "string", default: "Demander un devis" }
-          - { label: "Section Présentation", name: "body", widget: "markdown" }
+          - { label: "Titre principal", name: "title", widget: "string", default: "⚡ Vilas Elec" }
+          - { label: "Sous-titre", name: "subtitle", widget: "string", default: "Électricien Professionnel à Besançon" }
+          - { label: "Description", name: "description", widget: "text", default: "Installation, rénovation et dépannage électrique pour professionnels et particuliers en Bourgogne-Franche-Comté" }
+          - { label: "Texte du bouton", name: "ctaText", widget: "string", default: "Demander un devis gratuit" }
+          - { label: "Lien du bouton", name: "ctaLink", widget: "string", default: "/contact" }
 
-      # Page À propos
-      - label: "👤 À propos"
-        name: "about"
-        file: "src/content/pages/about.md"
+      - label: "Statistiques"
+        name: "stats"
+        file: "src/content/home/stats.json"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
+          - label: "Années d'expérience"
+            name: "experience"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "value", widget: "string", default: "20+", hint: "Ex: 20+" }
+              - { label: "Label", name: "label", widget: "string", default: "Années d'expérience" }
+
+          - label: "Chantiers réalisés"
+            name: "projects"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "value", widget: "string", default: "500+", hint: "Ex: 500+" }
+              - { label: "Label", name: "label", widget: "string", default: "Chantiers réalisés" }
+
+          - label: "Clients satisfaits"
+            name: "clients"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "value", widget: "string", default: "100%", hint: "Ex: 100%" }
+              - { label: "Label", name: "label", widget: "string", default: "Clients satisfaits" }
+
+          - label: "Certifications"
+            name: "certifications"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "value", widget: "string", default: "5+", hint: "Ex: 5+" }
+              - { label: "Label", name: "label", widget: "string", default: "Certifications" }
 
   # ==========================================
   # 5. PARAMÈTRES DU SITE
@@ -115,28 +158,44 @@ collections:
           - { label: "Nom de l'entreprise", name: "siteName", widget: "string", default: "VILAS ELEC" }
           - { label: "Slogan", name: "tagline", widget: "string", default: "Électricien Certifié Legrand à Saint-Vit" }
           - { label: "Adresse", name: "address", widget: "string", default: "6 Rue des Joncs, 25410 Saint-Vit" }
-          - { label: "Téléphone", name: "phone", widget: "string", default: "06 00 00 00 00" }
-          - { label: "Email", name: "email", widget: "string", default: "contact@vilaselec.fr" }
+          - { label: "Téléphone", name: "phone", widget: "string", default: "06 64 82 55 52" }
+          - { label: "Email", name: "email", widget: "string", default: "vilas.elec@outlook.fr" }
           - label: "Horaires"
             name: "hours"
             widget: "object"
             fields:
               - { label: "Lundi-Vendredi", name: "weekdays", widget: "string", default: "8h-18h" }
-              - { label: "Samedi", name: "saturday", widget: "string", default: "9h-12h" }
+              - { label: "Samedi", name: "saturday", widget: "string", default: "Sur rendez-vous" }
               - { label: "Dimanche", name: "sunday", widget: "string", default: "Fermé" }
           - label: "Réseaux sociaux"
             name: "social"
             widget: "object"
             fields:
-              - { label: "Facebook", name: "facebook", widget: "string", required: false }
-              - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
-              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Facebook", name: "facebook", widget: "string", required: false, hint: "URL complète de votre page Facebook" }
+              - { label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL complète de votre profil LinkedIn" }
+              - { label: "Instagram", name: "instagram", widget: "string", required: false, hint: "URL complète de votre profil Instagram" }
 
       # SEO
-      - label: "SEO"
+      - label: "SEO par défaut"
         name: "seo"
         file: "src/content/settings/seo.json"
         fields:
           - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Description par défaut du site (150-160 caractères)" }
-          - { label: "Mots-clés principaux", name: "keywords", widget: "list", hint: "Mots-clés SEO principaux" }
+          - { label: "Mots-clés principaux", name: "keywords", widget: "list", hint: "Mots-clés SEO principaux du site" }
           - { label: "Image de partage par défaut", name: "ogImage", widget: "image", hint: "Image pour les partages sur réseaux sociaux (1200x630px)" }
+
+  # ==========================================
+  # 6. SERVICES
+  # ==========================================
+  - name: "services"
+    label: "🔧 Services"
+    folder: "src/content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nom du service", name: "title", widget: "string", required: true }
+      - { label: "Icône (emoji)", name: "icon", widget: "string", hint: "Un emoji représentant le service, ex: ⚡ 🏠 🔌", default: "⚡" }
+      - { label: "Description courte", name: "excerpt", widget: "text", required: true, hint: "1 phrase résumant le service" }
+      - { label: "Description complète", name: "body", widget: "markdown", required: true }
+      - { label: "Prix indicatif", name: "price", widget: "string", required: false, hint: "Ex: À partir de 150€" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", value_type: "int", default: 1, hint: "1 = premier, 2 = deuxième, etc." }

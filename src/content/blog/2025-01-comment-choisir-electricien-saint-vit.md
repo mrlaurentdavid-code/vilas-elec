@@ -204,7 +204,7 @@ VILAS ELEC intervient dans tout le **département du Doubs (25)** :
 
 ### ✅ Certifications et Qualifications
 - Certifié **Legrand Partenaire Pro**
-- 15+ ans d'expérience
+- 20+ ans d'expérience
 - Formations continues (Céliane, Drivia, Netatmo)
 
 ### ✅ Assurances Complètes
