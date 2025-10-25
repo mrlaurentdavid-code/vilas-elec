@@ -11,20 +11,17 @@ import Layout from '../layouts/Layout.astro';
 	<!-- Le contenu de la page commence ici -->
 	<div>
 		<!-- Hero Section avec photo de fond et effet parallaxe -->
-		<div class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+		<div class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="hero-parallax">
 			<!-- Image de fond avec effet parallaxe -->
-			<!--
-				IMPORTANT : Remplacez cette URL par votre propre photo plus tard !
-				Photo actuelle : Installation électrique professionnelle (Unsplash)
-				Pour vos photos : Placez-les dans /public/images/ et utilisez src="/images/hero.jpg"
-			-->
-			<div
-				class="absolute inset-0 bg-cover bg-center bg-fixed"
-				style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop'); transform: translateZ(0);"
-			></div>
+			<img
+				src="/images/hero/parallaxe.jpg"
+				alt="VILAS ELEC - Électricien professionnel"
+				class="parallax-img absolute inset-0 w-full h-full object-cover"
+				style="transform: translateY(0px); will-change: transform;"
+			/>
 
 			<!-- Overlay sombre pour meilleure lisibilité -->
-			<div class="absolute inset-0 bg-black/40"></div>
+			<div class="absolute inset-0 bg-black/50"></div>
 
 			<!-- Contenu du hero (au-dessus de l'image) -->
 			<div class="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
@@ -209,12 +206,13 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 
 		<!-- Section Parallaxe avec photo pleine largeur -->
-		<div class="relative h-96 overflow-hidden bg-gray-900">
+		<div class="relative h-96 overflow-hidden bg-gray-900" id="satisfaction-parallax">
 			<!-- Image de fond avec balise img -->
 			<img
-				src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=2000"
-				alt="Installation électrique professionnelle"
-				class="absolute inset-0 w-full h-full object-cover"
+				src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop"
+				alt="Satisfaction client - Service professionnel VILAS ELEC"
+				class="parallax-img absolute inset-0 w-full h-full object-cover"
+				style="transform: translateY(0px); will-change: transform;"
 				loading="lazy"
 			/>
 			<!-- Overlay sombre -->
@@ -445,4 +443,63 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</div>
 	<!-- Fin du contenu de la page -->
+
+	<!-- Style pour l'effet parallaxe -->
+	<style>
+		/* Parallaxe pour le hero (grande section) */
+		#hero-parallax .parallax-img {
+			height: 160% !important;
+			min-height: 160% !important;
+			top: -30% !important;
+		}
+
+		/* Parallaxe pour la section satisfaction (plus petite) */
+		#satisfaction-parallax .parallax-img {
+			height: 180% !important;
+			min-height: 180% !important;
+			top: -40% !important;
+		}
+	</style>
+
+	<!-- Script pour l'effet parallaxe -->
+	<script>
+		// Effet parallaxe sur les images
+		function initParallax() {
+			const parallaxElements = document.querySelectorAll('.parallax-img');
+
+			function updateParallax() {
+				parallaxElements.forEach((element) => {
+					const parent = element.parentElement;
+					if (!parent) return;
+
+					const rect = parent.getBoundingClientRect();
+					const scrolled = window.pageYOffset;
+					const parentTop = rect.top + scrolled;
+					const parentHeight = parent.offsetHeight;
+
+					// Calculer si l'élément est visible
+					if (rect.bottom > 0 && rect.top < window.innerHeight) {
+						// Calculer le déplacement (plus lent que le scroll)
+						// Effet plus léger pour la section satisfaction
+						const intensity = parent.id === 'satisfaction-parallax' ? 0.15 : 0.2;
+						const yPos = -(scrolled - parentTop) * intensity;
+						element.style.transform = `translateY(${yPos}px)`;
+					}
+				});
+			}
+
+			// Mettre à jour au scroll
+			window.addEventListener('scroll', updateParallax, { passive: true });
+
+			// Mettre à jour au chargement
+			updateParallax();
+		}
+
+		// Initialiser quand le DOM est prêt
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initParallax);
+		} else {
+			initParallax();
+		}
+	</script>
 </Layout>
