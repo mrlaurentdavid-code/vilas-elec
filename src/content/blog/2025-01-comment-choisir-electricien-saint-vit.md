@@ -1,11 +1,13 @@
 ---
 title: "Comment Choisir un Électricien à Saint-Vit en 2025 : Le Guide Complet"
-excerpt: "Vous cherchez un électricien qualifié à Saint-Vit ? Découvrez les 7 critères essentiels pour choisir le bon professionnel et éviter les arnaques. Guide pratique 2025."
-image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop"
-category: "Conseils"
-date: "2025-01-20"
-author: "VILAS ELEC"
-readTime: "8 min"
+excerpt: Vous cherchez un électricien qualifié à Saint-Vit ? Découvrez les 7
+  critères essentiels pour choisir le bon professionnel et éviter les arnaques.
+  Guide pratique 2025.
+image: /images/uploads/un-electricien-de-sexe-masculin-travaille-dans-un-standard-avec-un-cable-de-raccordement-electrique-min.jpg
+category: Conseils
+date: 2025-01-20
+author: VILAS ELEC
+readTime: 8 min
 draft: false
 keywords:
   - électricien Saint-Vit
