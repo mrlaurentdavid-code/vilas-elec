@@ -1,0 +1,120 @@
+---
+// Layout principal pour toutes les pages du site
+
+// Interface TypeScript pour les props (propriétés) du layout
+interface Props {
+  title: string;                    // Titre de la page (requis)
+  description?: string;              // Meta description pour SEO
+  keywords?: string;                 // Mots-clés SEO
+}
+
+// Récupération des props avec valeurs par défaut
+const {
+  title,
+  description = "Vilas Elec - Électricien professionnel à Besançon et Bourgogne-Franche-Comté. Installations électriques, rénovation, dépannage pour professionnels et particuliers.",
+  keywords = "électricien, Besançon, Bourgogne-Franche-Comté, installation électrique, dépannage, rénovation"
+} = Astro.props;
+
+// Import des styles globaux (Tailwind)
+import '../styles/global.css';
+
+// Import des composants Header et Footer
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Meta tags essentiels -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta tags -->
+    <title>{title} | Vilas Elec</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+
+    <!-- Open Graph (partage sur réseaux sociaux) -->
+    <meta property="og:title" content={`${title} | Vilas Elec`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preconnect pour performances (Google Fonts si nécessaire plus tard) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- Netlify Identity Widget (pour l'authentification CMS) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+
+  <body class="bg-gray-50 text-gray-900">
+    <!-- Navigation (sticky en haut de page) -->
+    <Header />
+
+    <!-- Contenu principal de chaque page -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer (en bas de toutes les pages) -->
+    <Footer />
+
+    <!-- Script pour initialiser Lenis (scroll fluide) -->
+    <script>
+      // Import de Lenis pour le scroll fluide
+      import Lenis from 'lenis';
+
+      // Initialisation au chargement de la page
+      document.addEventListener('DOMContentLoaded', () => {
+        // Création d'une nouvelle instance Lenis
+        const lenis = new Lenis({
+          duration: 1.2,        // Durée de l'animation de scroll (en secondes)
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Fonction d'easing
+          smoothWheel: true,    // Active le scroll fluide à la molette
+        });
+
+        // Fonction de mise à jour appelée à chaque frame
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
+        // Démarrer la boucle d'animation
+        requestAnimationFrame(raf);
+      });
+    </script>
+
+    <!-- Script pour initialiser AOS (animations au scroll) -->
+    <script>
+      import AOS from 'aos';
+      import 'aos/dist/aos.css';
+
+      // Initialiser AOS quand le DOM est chargé
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({
+          duration: 800,        // Durée des animations (ms)
+          easing: 'ease-in-out', // Type d'animation
+          once: false,          // L'animation se répète à chaque scroll
+          offset: 100,          // Décalage avant déclenchement (px)
+        });
+      });
+    </script>
+
+    <!-- Script Netlify Identity pour redirection après connexion -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

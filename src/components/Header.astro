@@ -1,0 +1,181 @@
+---
+// Composant de navigation avec menu hamburger responsive
+// Ce composant sera affiché sur toutes les pages
+---
+
+<header
+  id="header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-md"
+>
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo / Nom de l'entreprise -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-3 group">
+          <span class="text-3xl group-hover:scale-110 transition-transform duration-300">⚡</span>
+          <div>
+            <span class="text-2xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
+              Vilas Elec
+            </span>
+            <p class="text-xs text-gray-600 hidden sm:block">Électricien Professionnel</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Menu Desktop (caché sur mobile) -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a
+          href="/"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+        >
+          Accueil
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a
+          href="/about"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+        >
+          À propos
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a
+          href="/services"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+        >
+          Services
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a
+          href="/realisations"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+        >
+          Réalisations
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a
+          href="/blog"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+        >
+          Blog
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a
+          href="/contact"
+          class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg"
+        >
+          Contact
+        </a>
+      </div>
+
+      <!-- Bouton hamburger (visible sur mobile uniquement) -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden flex flex-col space-y-1.5 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        aria-label="Menu"
+      >
+        <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+        <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+        <span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menu Mobile (caché par défaut) -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-white border-t border-gray-200 shadow-lg"
+  >
+    <div class="px-4 py-6 space-y-4">
+      <a
+        href="/"
+        class="block text-gray-700 hover:text-blue-600 font-medium py-2 px-4 rounded-lg hover:bg-blue-50 transition-colors"
+      >
+        Accueil
+      </a>
+      <a
+        href="/about"
+        class="block text-gray-700 hover:text-blue-600 font-medium py-2 px-4 rounded-lg hover:bg-blue-50 transition-colors"
+      >
+        À propos
+      </a>
+      <a
+        href="/services"
+        class="block text-gray-700 hover:text-blue-600 font-medium py-2 px-4 rounded-lg hover:bg-blue-50 transition-colors"
+      >
+        Services
+      </a>
+      <a
+        href="/realisations"
+        class="block text-gray-700 hover:text-blue-600 font-medium py-2 px-4 rounded-lg hover:bg-blue-50 transition-colors"
+      >
+        Réalisations
+      </a>
+      <a
+        href="/blog"
+        class="block text-gray-700 hover:text-blue-600 font-medium py-2 px-4 rounded-lg hover:bg-blue-50 transition-colors"
+      >
+        Blog
+      </a>
+      <a
+        href="/contact"
+        class="block bg-blue-600 text-white text-center px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+      >
+        Contact
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Script pour le menu hamburger -->
+<script>
+  // Attendre que le DOM soit chargé
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Toggle du menu au clic
+    menuButton?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+
+      // Animation du bouton hamburger en X
+      const spans = menuButton.querySelectorAll('span');
+      if (mobileMenu?.classList.contains('hidden')) {
+        // État hamburger normal
+        spans[0].style.transform = 'rotate(0)';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'rotate(0)';
+      } else {
+        // État X
+        spans[0].style.transform = 'rotate(45deg) translateY(8px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
+      }
+    });
+
+    // Fermer le menu mobile quand on clique sur un lien
+    const mobileLinks = mobileMenu?.querySelectorAll('a');
+    mobileLinks?.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden');
+
+        // Réinitialiser le bouton hamburger
+        const spans = menuButton?.querySelectorAll('span');
+        if (spans) {
+          spans[0].style.transform = 'rotate(0)';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'rotate(0)';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Style pour le backdrop blur (effet verre dépoli) */
+  @supports (backdrop-filter: blur(10px)) {
+    header {
+      backdrop-filter: blur(10px);
+    }
+  }
+</style>

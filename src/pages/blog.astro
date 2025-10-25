@@ -1,0 +1,254 @@
+---
+// Page Blog - Vilas Elec
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Récupération de tous les articles de blog
+const allArticles = await getCollection('blog');
+
+// Filtrer les brouillons et trier par date (plus récent en premier)
+const articles = allArticles
+  .filter(article => !article.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Extraire toutes les catégories uniques des articles
+const allCategories = [...new Set(articles.map(article => article.data.category))];
+const categories = ["Tous", ...allCategories.sort()];
+
+// Formatage des dates
+const formatDate = (date: string | Date) => {
+  return new Date(date).toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+};
+---
+
+<Layout
+	title="Blog"
+	description="Blog VILAS ELEC - Actualités, conseils et guides sur l'électricité, la domotique, les normes NF C 15-100, la rénovation électrique et les bornes de recharge. Électricien certifié Legrand à Saint-Vit."
+	keywords="blog électricité, conseils électricien, domotique, norme NF C 15-100, rénovation électrique, Saint-Vit, Besançon, Doubs"
+>
+	<!-- Hero Section -->
+	<div class="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20 pt-32">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center" data-aos="fade-up">
+				<h1 class="text-4xl md:text-5xl font-bold mb-6">
+					Blog & Actualités
+				</h1>
+				<p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+					Conseils, actualités et guides pratiques sur l'électricité et la domotique à Saint-Vit et dans le Doubs
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Filtres de catégories -->
+	<div class="bg-white border-b border-gray-200 sticky top-0 z-40">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+			<div class="flex flex-wrap justify-center gap-3" data-aos="fade-up">
+				{categories.map((category) => (
+					<button
+						class={`category-btn px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+							category === "Tous"
+								? "bg-blue-600 text-white"
+								: "bg-gray-200 text-gray-700 hover:bg-gray-300"
+						}`}
+						data-category={category}
+					>
+						{category}
+					</button>
+				))}
+			</div>
+		</div>
+	</div>
+
+	<!-- Liste des articles -->
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+			{articles.map((article, index) => (
+				<article
+					class="article-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
+					data-category={article.data.category}
+					data-aos="fade-up"
+					data-aos-delay={index * 100}
+				>
+					<!-- Image -->
+					<div class="relative h-56 overflow-hidden bg-gray-200">
+						<img
+							src={article.data.image}
+							alt={article.data.title}
+							class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+							loading="lazy"
+						/>
+						<div class="absolute top-4 left-4">
+							<span class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+								{article.data.category}
+							</span>
+						</div>
+					</div>
+
+					<!-- Contenu -->
+					<div class="p-6">
+						<!-- Metadata -->
+						<div class="flex items-center text-sm text-gray-500 mb-3">
+							<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+							</svg>
+							<span>{formatDate(article.data.date)}</span>
+							<span class="mx-2">•</span>
+							<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+							<span>{article.data.readTime}</span>
+						</div>
+
+						<!-- Titre -->
+						<h2 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+							{article.data.title}
+						</h2>
+
+						<!-- Extrait -->
+						<p class="text-gray-600 mb-4 line-clamp-3">
+							{article.data.excerpt}
+						</p>
+
+						<!-- Lien -->
+						<a
+							href={`/blog/${article.slug}`}
+							class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors group/link"
+						>
+							Lire l'article
+							<svg class="w-5 h-5 ml-2 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+							</svg>
+						</a>
+					</div>
+				</article>
+			))}
+		</div>
+
+		<!-- Message si aucun article -->
+		<div id="no-articles" class="hidden text-center py-16">
+			<div class="text-6xl mb-4">📝</div>
+			<h3 class="text-2xl font-bold text-gray-800 mb-2">Aucun article dans cette catégorie</h3>
+			<p class="text-gray-600">Essayez de sélectionner une autre catégorie</p>
+		</div>
+	</div>
+
+	<!-- Newsletter Section -->
+	<div class="bg-gradient-to-br from-blue-50 to-blue-100 py-16">
+		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl text-center" data-aos="zoom-in">
+				<div class="text-5xl mb-4">📧</div>
+				<h2 class="text-3xl font-bold mb-4 text-gray-800">
+					Restez informé de nos actualités
+				</h2>
+				<p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+					Recevez nos derniers articles, conseils et actualités directement dans votre boîte mail. Pas de spam, juste de l'information utile !
+				</p>
+
+				<!-- Formulaire newsletter (compatible Netlify) -->
+				<form name="newsletter" method="POST" data-netlify="true" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+					<input type="hidden" name="form-name" value="newsletter" />
+					<input
+						type="email"
+						name="email"
+						required
+						placeholder="Votre adresse email"
+						class="flex-1 px-6 py-4 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none"
+					/>
+					<button
+						type="submit"
+						class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:scale-105 transform"
+					>
+						S'inscrire
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- CTA Section -->
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+		<div class="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-8 md:p-12 text-center shadow-2xl" data-aos="zoom-in">
+			<h2 class="text-3xl md:text-4xl font-bold mb-6 text-blue-900">
+				Une Question sur l'Électricité ?
+			</h2>
+			<p class="text-xl text-blue-800 mb-8 max-w-2xl mx-auto">
+				N'hésitez pas à nous contacter pour toute question technique ou pour un devis personnalisé.
+			</p>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a
+					href="/contact"
+					class="inline-block bg-blue-900 text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition-all duration-300 shadow-xl hover:scale-105 transform"
+				>
+					Nous contacter
+				</a>
+				<a
+					href="/services"
+					class="inline-block bg-white text-blue-900 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:scale-105 transform"
+				>
+					Nos services
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Script de filtrage -->
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const categoryButtons = document.querySelectorAll('.category-btn');
+			const articleCards = document.querySelectorAll('.article-card');
+			const noArticlesMessage = document.getElementById('no-articles');
+
+			categoryButtons.forEach(button => {
+				button.addEventListener('click', () => {
+					const selectedCategory = button.getAttribute('data-category');
+
+					// Mise à jour visuelle des boutons
+					categoryButtons.forEach(btn => {
+						btn.classList.remove('bg-blue-600', 'text-white');
+						btn.classList.add('bg-gray-200', 'text-gray-700');
+					});
+					button.classList.remove('bg-gray-200', 'text-gray-700');
+					button.classList.add('bg-blue-600', 'text-white');
+
+					// Filtrage des articles
+					let visibleCount = 0;
+					articleCards.forEach(card => {
+						const cardCategory = card.getAttribute('data-category');
+
+						if (selectedCategory === 'Tous' || cardCategory === selectedCategory) {
+							card.style.display = 'block';
+							visibleCount++;
+							setTimeout(() => {
+								card.style.opacity = '1';
+								card.style.transform = 'scale(1)';
+							}, 10);
+						} else {
+							card.style.opacity = '0';
+							card.style.transform = 'scale(0.95)';
+							setTimeout(() => {
+								card.style.display = 'none';
+							}, 300);
+						}
+					});
+
+					// Affichage message si aucun article
+					if (visibleCount === 0) {
+						noArticlesMessage!.classList.remove('hidden');
+					} else {
+						noArticlesMessage!.classList.add('hidden');
+					}
+				});
+			});
+
+			// Style initial pour les transitions
+			articleCards.forEach(card => {
+				card.style.transition = 'opacity 0.3s, transform 0.3s';
+			});
+		});
+	</script>
+</Layout>

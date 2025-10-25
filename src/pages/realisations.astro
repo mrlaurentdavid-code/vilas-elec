@@ -1,0 +1,345 @@
+---
+// Page Réalisations - Vilas Elec
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Nos Réalisations"
+	description="Découvrez les réalisations de VILAS ELEC : installations électriques professionnelles, domotique, rénovations, tableaux électriques, bornes de recharge. Électricien certifié Legrand à Saint-Vit (25410)."
+	keywords="réalisations électricien, chantiers, domotique, tableaux électriques, rénovation, Saint-Vit"
+>
+	<!-- Hero Section -->
+	<div class="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20 pt-32">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center" data-aos="fade-up">
+				<h1 class="text-4xl md:text-5xl font-bold mb-6">
+					Nos Réalisations
+				</h1>
+				<p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+					Découvrez nos chantiers et installations électriques réalisés avec soin et professionnalisme
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Section Introduction -->
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+		<div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+			<p class="text-lg text-gray-600 leading-relaxed mb-8">
+				Chaque projet est unique. <strong class="text-gray-800">VILAS ELEC</strong> met son expertise au service de vos installations électriques, qu'elles soient <strong>résidentielles</strong> ou <strong>professionnelles</strong>. Découvrez quelques-unes de nos réalisations conformes à la <strong class="text-blue-600">norme NF C 15-100</strong>.
+			</p>
+		</div>
+	</div>
+
+	<!-- Filtres de catégories -->
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+		<div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
+			<button class="filter-btn active bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all duration-300" data-filter="all">
+				Toutes les réalisations
+			</button>
+			<button class="filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-all duration-300" data-filter="domotique">
+				Domotique
+			</button>
+			<button class="filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-all duration-300" data-filter="renovation">
+				Rénovation
+			</button>
+			<button class="filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-all duration-300" data-filter="professionnel">
+				Professionnel
+			</button>
+			<button class="filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300" data-filter="tableau">
+				Tableaux électriques
+			</button>
+		</div>
+	</div>
+
+	<!-- Galerie de réalisations -->
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery">
+
+			<!-- Réalisation 1 : Installation électrique complète -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="professionnel" data-aos="fade-up" data-aos-delay="100">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="/images/realisations/realisation-1.jpg"
+						alt="Installation électrique professionnelle complète"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-2">PROFESSIONNEL</span>
+						<h3 class="text-xl font-bold mb-2">Installation Électrique Complète</h3>
+						<p class="text-sm text-gray-200">Local professionnel - Saint-Vit (25)</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 2 : Tableau électrique -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="tableau" data-aos="fade-up" data-aos-delay="200">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop"
+						alt="Tableau électrique Drivia aux normes"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-yellow-500 px-3 py-1 rounded-full text-xs font-bold mb-2 text-gray-900">TABLEAU ÉLECTRIQUE</span>
+						<h3 class="text-xl font-bold mb-2">Tableau Électrique Drivia</h3>
+						<p class="text-sm text-gray-200">Mise aux normes NF C 15-100</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 3 : Rénovation -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="renovation" data-aos="fade-up" data-aos-delay="300">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="/images/realisations/realisation-3.jpg"
+						alt="Rénovation électrique maison ancienne"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-green-600 px-3 py-1 rounded-full text-xs font-bold mb-2">RÉNOVATION</span>
+						<h3 class="text-xl font-bold mb-2">Rénovation Électrique Complète</h3>
+						<p class="text-sm text-gray-200">Maison ancienne - Doubs (25)</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 4 : Domotique -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="domotique" data-aos="fade-up" data-aos-delay="400">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=800&auto=format&fit=crop"
+						alt="Installation domotique maison connectée"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-purple-600 px-3 py-1 rounded-full text-xs font-bold mb-2">DOMOTIQUE</span>
+						<h3 class="text-xl font-bold mb-2">Installation Domotique Complète</h3>
+						<p class="text-sm text-gray-200">Maison connectée - Céliane with Netatmo</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 5 : Installation industrielle -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="professionnel" data-aos="fade-up" data-aos-delay="500">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="/images/realisations/realisation-5.jpg"
+						alt="Installation électrique industrielle"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-2">PROFESSIONNEL</span>
+						<h3 class="text-xl font-bold mb-2">Installation Électrique Industrielle</h3>
+						<p class="text-sm text-gray-200">Bâtiment industriel - Besançon</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 6 : Borne de recharge -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="professionnel" data-aos="fade-up" data-aos-delay="600">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=800&auto=format&fit=crop"
+						alt="Installation borne de recharge GREEN'UP"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-green-600 px-3 py-1 rounded-full text-xs font-bold mb-2">GREEN'UP</span>
+						<h3 class="text-xl font-bold mb-2">Borne de Recharge Électrique</h3>
+						<p class="text-sm text-gray-200">Installation GREEN'UP Legrand</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 7 : Éclairage LED -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="professionnel" data-aos="fade-up" data-aos-delay="700">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop"
+						alt="Installation éclairage LED professionnel"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-2">PROFESSIONNEL</span>
+						<h3 class="text-xl font-bold mb-2">Éclairage LED Professionnel</h3>
+						<p class="text-sm text-gray-200">Bureau d'entreprise - Saint-Vit</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 8 : Rénovation appartement -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="renovation" data-aos="fade-up" data-aos-delay="800">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=800&auto=format&fit=crop"
+						alt="Rénovation électrique appartement"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-green-600 px-3 py-1 rounded-full text-xs font-bold mb-2">RÉNOVATION</span>
+						<h3 class="text-xl font-bold mb-2">Rénovation Appartement</h3>
+						<p class="text-sm text-gray-200">Mise aux normes complète - Besançon</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Réalisation 9 : Interrupteurs Céliane -->
+			<div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer" data-category="domotique" data-aos="fade-up" data-aos-delay="900">
+				<div class="aspect-square overflow-hidden bg-gray-200">
+					<img
+						src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1"
+						alt="Installation interrupteurs Céliane"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+						<span class="inline-block bg-purple-600 px-3 py-1 rounded-full text-xs font-bold mb-2">DOMOTIQUE</span>
+						<h3 class="text-xl font-bold mb-2">Interrupteurs Céliane Design</h3>
+						<p class="text-sm text-gray-200">Gamme Céliane with Netatmo</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Section Témoignages -->
+	<div class="bg-gradient-to-br from-blue-50 to-blue-100 py-20">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16" data-aos="fade-up">
+				<h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+					Ce que nos clients disent
+				</h2>
+				<p class="text-xl text-gray-600">
+					Votre satisfaction est notre priorité
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				<!-- Témoignage 1 -->
+				<div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
+					<div class="flex items-center mb-4">
+						<div class="flex text-yellow-500 text-xl">
+							★★★★★
+						</div>
+					</div>
+					<p class="text-gray-600 italic mb-4">
+						"Travail impeccable pour la rénovation électrique de notre maison ancienne. Respecte les délais et très professionnel."
+					</p>
+					<p class="font-bold text-gray-800">M. Dupont</p>
+					<p class="text-sm text-gray-500">Besançon</p>
+				</div>
+
+				<!-- Témoignage 2 -->
+				<div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+					<div class="flex items-center mb-4">
+						<div class="flex text-yellow-500 text-xl">
+							★★★★★
+						</div>
+					</div>
+					<p class="text-gray-600 italic mb-4">
+						"Installation domotique parfaite ! Maison entièrement pilotable depuis mon téléphone. Je recommande vivement."
+					</p>
+					<p class="font-bold text-gray-800">Mme Martin</p>
+					<p class="text-sm text-gray-500">Saint-Vit</p>
+				</div>
+
+				<!-- Témoignage 3 -->
+				<div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
+					<div class="flex items-center mb-4">
+						<div class="flex text-yellow-500 text-xl">
+							★★★★★
+						</div>
+					</div>
+					<p class="text-gray-600 italic mb-4">
+						"Installation rapide de notre borne de recharge GREEN'UP. Très bon conseil sur le choix du matériel."
+					</p>
+					<p class="font-bold text-gray-800">M. Bernard</p>
+					<p class="text-sm text-gray-500">Doubs</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- CTA Section -->
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+		<div class="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-8 md:p-12 text-center shadow-2xl" data-aos="zoom-in">
+			<h2 class="text-3xl md:text-4xl font-bold mb-6 text-blue-900">
+				Votre Projet en Images Demain ?
+			</h2>
+			<p class="text-xl text-blue-800 mb-8 max-w-2xl mx-auto">
+				Confiez-nous votre projet d'installation ou de rénovation électrique. <strong>Devis gratuit et personnalisé</strong>.
+			</p>
+			<a
+				href="/contact"
+				class="inline-block bg-blue-900 text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition-all duration-300 shadow-xl hover:scale-105 transform"
+			>
+				Demander un devis gratuit
+			</a>
+		</div>
+	</div>
+
+	<!-- Script de filtrage de galerie -->
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const filterButtons = document.querySelectorAll('.filter-btn');
+			const galleryItems = document.querySelectorAll('.gallery-item');
+
+			filterButtons.forEach(button => {
+				button.addEventListener('click', () => {
+					const filter = button.getAttribute('data-filter');
+
+					// Mise à jour visuelle des boutons
+					filterButtons.forEach(btn => {
+						btn.classList.remove('active', 'bg-blue-600', 'text-white');
+						btn.classList.add('bg-gray-200', 'text-gray-700');
+					});
+					button.classList.add('active', 'bg-blue-600', 'text-white');
+					button.classList.remove('bg-gray-200', 'text-gray-700');
+
+					// Filtrage des éléments
+					galleryItems.forEach(item => {
+						const itemCategory = item.getAttribute('data-category');
+
+						if (filter === 'all' || itemCategory === filter) {
+							item.style.display = 'block';
+							setTimeout(() => {
+								item.style.opacity = '1';
+								item.style.transform = 'scale(1)';
+							}, 10);
+						} else {
+							item.style.opacity = '0';
+							item.style.transform = 'scale(0.8)';
+							setTimeout(() => {
+								item.style.display = 'none';
+							}, 300);
+						}
+					});
+				});
+			});
+
+			// Style initial pour les transitions
+			galleryItems.forEach(item => {
+				item.style.transition = 'opacity 0.3s, transform 0.3s';
+			});
+		});
+	</script>
+</Layout>

@@ -1,16 +1,448 @@
 ---
-
+// Importer le layout principal
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+	title="Accueil"
+	description="Vilas Elec - Électricien professionnel à Besançon. Installations électriques, rénovation et dépannage pour professionnels et particuliers en Bourgogne-Franche-Comté."
+	keywords="électricien Besançon, installation électrique, dépannage électrique, rénovation électrique, électricien professionnel"
+>
+	<!-- Le contenu de la page commence ici -->
+	<div>
+		<!-- Hero Section avec photo de fond et effet parallaxe -->
+		<div class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+			<!-- Image de fond avec effet parallaxe -->
+			<!--
+				IMPORTANT : Remplacez cette URL par votre propre photo plus tard !
+				Photo actuelle : Installation électrique professionnelle (Unsplash)
+				Pour vos photos : Placez-les dans /public/images/ et utilisez src="/images/hero.jpg"
+			-->
+			<div
+				class="absolute inset-0 bg-cover bg-center bg-fixed"
+				style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop'); transform: translateZ(0);"
+			></div>
+
+			<!-- Overlay sombre pour meilleure lisibilité -->
+			<div class="absolute inset-0 bg-black/40"></div>
+
+			<!-- Contenu du hero (au-dessus de l'image) -->
+			<div class="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
+				<!-- Logo/Titre avec animation fade-up -->
+				<h1
+					class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl"
+					data-aos="fade-up"
+					data-aos-duration="1000"
+				>
+					⚡ Vilas Elec
+				</h1>
+
+				<!-- Sous-titre avec animation fade-up retardée -->
+				<p
+					class="text-2xl md:text-3xl mb-8 font-semibold drop-shadow-lg"
+					data-aos="fade-up"
+					data-aos-delay="200"
+				>
+					Électricien Professionnel à Besançon
+				</p>
+
+				<!-- Description avec animation fade-up retardée -->
+				<p
+					class="text-lg md:text-xl mb-10 max-w-2xl mx-auto drop-shadow-lg"
+					data-aos="fade-up"
+					data-aos-delay="400"
+				>
+					Expertise en installations électriques pour professionnels et particuliers
+					<br />
+					Plus de 15 ans d'expérience en Bourgogne-Franche-Comté
+				</p>
+
+				<!-- Boutons d'action avec animation zoom-in -->
+				<div
+					class="flex gap-4 justify-center flex-wrap"
+					data-aos="zoom-in"
+					data-aos-delay="600"
+				>
+					<a
+						href="/contact"
+						class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all duration-300 shadow-2xl hover:scale-105 transform"
+					>
+						📞 Demander un devis
+					</a>
+					<a
+						href="/services"
+						class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:scale-105 transform"
+					>
+						🔧 Nos services
+					</a>
+				</div>
+
+				<!-- Badges de confiance -->
+				<div
+					class="mt-16 flex flex-wrap gap-8 justify-center items-center"
+					data-aos="fade-up"
+					data-aos-delay="800"
+				>
+					<div class="text-center">
+						<p class="text-3xl font-bold text-yellow-400">15+</p>
+						<p class="text-sm text-gray-200">Années d'expérience</p>
+					</div>
+					<div class="text-center">
+						<p class="text-3xl font-bold text-yellow-400">500+</p>
+						<p class="text-sm text-gray-200">Chantiers réalisés</p>
+					</div>
+					<div class="text-center">
+						<p class="text-3xl font-bold text-yellow-400">100%</p>
+						<p class="text-sm text-gray-200">Clients satisfaits</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Indicateur de scroll -->
+			<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+				<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+				</svg>
+			</div>
+		</div>
+
+		<!-- Section Nos Services avec photos professionnelles -->
+		<div class="max-w-7xl mx-auto py-20 px-4">
+			<h2
+				class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-800"
+				data-aos="fade-down"
+			>
+				Nos Services
+			</h2>
+			<p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto" data-aos="fade-up">
+				Des solutions électriques complètes pour tous vos projets, du dépannage urgent aux installations complexes.
+			</p>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				<!-- Carte 1 : Installations Professionnelles avec photo -->
+				<div
+					class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+					data-aos="fade-right"
+					data-aos-delay="100"
+				>
+					<!-- Photo de service (VOTRE PHOTO - Installation électrique professionnelle) -->
+					<div class="h-64 overflow-hidden">
+						<img
+							src="/images/services/installation-pro.jpg"
+							alt="Installations électriques professionnelles - Vilas Elec"
+							class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+						/>
+					</div>
+					<div class="p-6">
+						<div class="text-4xl mb-4">🏢</div>
+						<h3 class="text-2xl font-bold mb-3 text-gray-800">Installations Professionnelles</h3>
+						<p class="text-gray-600 mb-4">
+							Équipement électrique complet pour locaux professionnels, commerces et industries. Tableaux électriques, éclairage, câblage.
+						</p>
+						<a href="/services" class="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
+							En savoir plus
+							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<!-- Carte 2 : Rénovation Habitat avec photo -->
+				<div
+					class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+					data-aos="fade-up"
+					data-aos-delay="200"
+				>
+					<!-- Photo de service (VOTRE PHOTO - Rénovation électrique maison) -->
+					<div class="h-64 overflow-hidden">
+						<img
+							src="/images/services/renovation-habitat.jpg"
+							alt="Rénovation électrique habitat - Vilas Elec"
+							class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+						/>
+					</div>
+					<div class="p-6">
+						<div class="text-4xl mb-4">🏠</div>
+						<h3 class="text-2xl font-bold mb-3 text-gray-800">Rénovation Habitat</h3>
+						<p class="text-gray-600 mb-4">
+							Mise aux normes, rénovation électrique complète pour votre maison ou appartement. Diagnostic, installation, certification.
+						</p>
+						<a href="/services" class="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
+							En savoir plus
+							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<!-- Carte 3 : Dépannage Rapide avec photo -->
+				<div
+					class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+					data-aos="fade-left"
+					data-aos-delay="300"
+				>
+					<!-- Photo de service (VOTRE PHOTO - Dépannage électrique) -->
+					<div class="h-64 overflow-hidden">
+						<img
+							src="/images/services/depannage-rapide.jpg"
+							alt="Dépannage électrique rapide - Vilas Elec"
+							class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+						/>
+					</div>
+					<div class="p-6">
+						<div class="text-4xl mb-4">🔧</div>
+						<h3 class="text-2xl font-bold mb-3 text-gray-800">Dépannage Rapide</h3>
+						<p class="text-gray-600 mb-4">
+							Intervention rapide pour tous vos problèmes électriques urgents, 7j/7. Panne électrique, disjoncteur, court-circuit.
+						</p>
+						<a href="/contact" class="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
+							Nous contacter
+							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Section Parallaxe avec photo pleine largeur -->
+		<div class="relative h-96 overflow-hidden bg-gray-900">
+			<!-- Image de fond avec balise img -->
+			<img
+				src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=2000"
+				alt="Installation électrique professionnelle"
+				class="absolute inset-0 w-full h-full object-cover"
+				loading="lazy"
+			/>
+			<!-- Overlay sombre -->
+			<div class="absolute inset-0 bg-black/60"></div>
+
+			<!-- Contenu -->
+			<div class="relative z-10 h-full flex items-center justify-center">
+				<div class="text-center text-white px-4" data-aos="zoom-in">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl">
+						Votre Satisfaction, Notre Priorité
+					</h2>
+					<p class="text-xl md:text-2xl mb-8 drop-shadow-xl max-w-3xl mx-auto">
+						Des travaux électriques de qualité, dans le respect des normes et de votre budget
+					</p>
+					<a
+						href="/contact"
+						class="bg-yellow-400 text-blue-900 px-10 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all duration-300 shadow-2xl inline-block hover:scale-105 transform"
+					>
+						📞 Obtenir un devis gratuit
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Section Nos Réalisations avec galerie photo -->
+		<div class="max-w-7xl mx-auto py-20 px-4">
+			<h2
+				class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-800"
+				data-aos="fade-down"
+			>
+				Nos Réalisations
+			</h2>
+			<p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto" data-aos="fade-up">
+				Découvrez quelques-uns de nos derniers chantiers réalisés avec succès en Bourgogne-Franche-Comté.
+			</p>
+
+			<!-- Galerie de photos avec effet hover -->
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<!-- Photo 1 : Installation tableau électrique (VOTRE PHOTO) -->
+				<div
+					class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-80"
+					data-aos="fade-up"
+					data-aos-delay="100"
+				>
+					<img
+						src="/images/realisations/realisation-1.jpg"
+						alt="Installation tableau électrique professionnel - Vilas Elec"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+					<!-- Overlay au hover -->
+					<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+						<div class="text-white">
+							<h3 class="text-xl font-bold mb-2">Tableau Électrique Professionnel</h3>
+							<p class="text-sm text-gray-200">Installation complète pour commerce à Besançon</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Photo 2 : Rénovation électrique maison -->
+				<div
+					class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-80"
+					data-aos="fade-up"
+					data-aos-delay="200"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop"
+						alt="Rénovation électrique complète"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+						<div class="text-white">
+							<h3 class="text-xl font-bold mb-2">Rénovation Électrique Complète</h3>
+							<p class="text-sm text-gray-200">Mise aux normes maison individuelle - Doubs</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Photo 3 : Éclairage LED commercial (VOTRE PHOTO) -->
+				<div
+					class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-80"
+					data-aos="fade-up"
+					data-aos-delay="300"
+				>
+					<img
+						src="/images/realisations/realisation-3.jpg"
+						alt="Installation éclairage LED professionnel - Vilas Elec"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+						<div class="text-white">
+							<h3 class="text-xl font-bold mb-2">Éclairage LED Bureau</h3>
+							<p class="text-sm text-gray-200">Installation éclairage moderne - Entreprise BFC</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Photo 4 : Domotique smart home -->
+				<div
+					class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-80"
+					data-aos="fade-up"
+					data-aos-delay="400"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=800&auto=format&fit=crop"
+						alt="Installation domotique maison connectée"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+						<div class="text-white">
+							<h3 class="text-xl font-bold mb-2">Domotique & Maison Connectée</h3>
+							<p class="text-sm text-gray-200">Automatisation complète résidence - Besançon</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Photo 5 : Installation industrielle (VOTRE PHOTO) -->
+				<div
+					class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-80"
+					data-aos="fade-up"
+					data-aos-delay="500"
+				>
+					<img
+						src="/images/realisations/realisation-5.jpg"
+						alt="Installation électrique industrielle - Vilas Elec"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+						<div class="text-white">
+							<h3 class="text-xl font-bold mb-2">Installation Industrielle</h3>
+							<p class="text-sm text-gray-200">Câblage et tableaux électriques - Usine BFC</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Photo 6 : Borne de recharge véhicule électrique -->
+				<div
+					class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-80"
+					data-aos="fade-up"
+					data-aos-delay="600"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?q=80&w=800&auto=format&fit=crop"
+						alt="Installation borne de recharge électrique"
+						class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+						<div class="text-white">
+							<h3 class="text-xl font-bold mb-2">Borne de Recharge Électrique</h3>
+							<p class="text-sm text-gray-200">Installation wallbox domicile - Doubs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Bouton voir plus -->
+			<div class="text-center mt-12" data-aos="fade-up">
+				<a
+					href="/realisations"
+					class="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:scale-105 transform"
+				>
+					Voir toutes nos réalisations
+					<svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+
+		<!-- Section Pourquoi nous choisir avec icônes -->
+		<div class="bg-gray-100 py-20">
+			<div class="max-w-7xl mx-auto px-4">
+				<h2
+					class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-800"
+					data-aos="fade-down"
+				>
+					Pourquoi Choisir Vilas Elec ?
+				</h2>
+				<p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto" data-aos="fade-up">
+					Des professionnels qualifiés à votre service pour tous vos besoins électriques
+				</p>
+
+				<div class="grid md:grid-cols-4 gap-8">
+					<!-- Avantage 1 -->
+					<div class="text-center" data-aos="fade-up" data-aos-delay="100">
+						<div class="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+							<svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-2 text-gray-800">Certifié & Assuré</h3>
+						<p class="text-gray-600">Tous nos travaux sont garantis et aux normes NF C 15-100</p>
+					</div>
+
+					<!-- Avantage 2 -->
+					<div class="text-center" data-aos="fade-up" data-aos-delay="200">
+						<div class="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+							<svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-2 text-gray-800">Intervention Rapide</h3>
+						<p class="text-gray-600">Dépannage 7j/7 pour vos urgences électriques</p>
+					</div>
+
+					<!-- Avantage 3 -->
+					<div class="text-center" data-aos="fade-up" data-aos-delay="300">
+						<div class="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+							<svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-2 text-gray-800">Devis Gratuit</h3>
+						<p class="text-gray-600">Estimation transparente et sans engagement</p>
+					</div>
+
+					<!-- Avantage 4 -->
+					<div class="text-center" data-aos="fade-up" data-aos-delay="400">
+						<div class="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+							<svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-2 text-gray-800">Équipe Expérimentée</h3>
+						<p class="text-gray-600">Plus de 15 ans d'expertise au service de la qualité</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fin du contenu de la page -->
+</Layout>

@@ -1,0 +1,17 @@
+{
+  "siteName": "VILAS ELEC",
+  "tagline": "Électricien Certifié Legrand à Saint-Vit",
+  "address": "6 Rue des Joncs, 25410 Saint-Vit",
+  "phone": "06 64 82 55 52",
+  "email": "vilas.elec@outlook.fr",
+  "hours": {
+    "weekdays": "8h-18h",
+    "saturday": "Fermé",
+    "sunday": "Fermé"
+  },
+  "social": {
+    "facebook": "",
+    "linkedin": "",
+    "instagram": ""
+  }
+}
