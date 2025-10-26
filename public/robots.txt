@@ -1,0 +1,14 @@
+# robots.txt pour VILAS ELEC
+# Permet aux moteurs de recherche d'indexer le site
+
+# Autoriser tous les robots
+User-agent: *
+Allow: /
+
+# Bloquer l'accès aux dossiers administratifs et techniques
+Disallow: /admin/
+Disallow: /_astro/
+Disallow: /api/
+
+# Sitemap XML (sera généré automatiquement par Astro)
+Sitemap: https://vilas-elec.fr/sitemap-index.xml
