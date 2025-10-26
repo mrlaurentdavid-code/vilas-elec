@@ -189,8 +189,8 @@ import Layout from '../layouts/Layout.astro';
 							</div>
 							<div>
 								<h3 class="font-bold text-lg mb-1">Téléphone</h3>
-								<a href="tel:+33664825552" class="text-blue-100 hover:text-white text-lg font-semibold transition-colors">
-									06 64 82 55 52
+								<a href="#" class="obfuscated-phone text-blue-100 hover:text-white text-lg font-semibold transition-colors" data-phone="MDYgNjQgODIgNTUgNTI=">
+									Afficher le numéro
 								</a>
 							</div>
 						</div>
@@ -204,8 +204,8 @@ import Layout from '../layouts/Layout.astro';
 							</div>
 							<div>
 								<h3 class="font-bold text-lg mb-1">Email</h3>
-								<a href="mailto:vilas.elec@outlook.fr" class="text-blue-100 hover:text-white transition-colors break-all">
-									vilas.elec@outlook.fr
+								<a href="#" class="obfuscated-email text-blue-100 hover:text-white transition-colors break-all" data-email="dmlsYXMuZWxlY0BvdXRsb29rLmZy">
+									Afficher l'email
 								</a>
 							</div>
 						</div>
@@ -252,8 +252,9 @@ import Layout from '../layouts/Layout.astro';
 						Pour toute urgence électrique, contactez-nous directement par téléphone pour une intervention rapide.
 					</p>
 					<a
-						href="tel:+33664825552"
-						class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition-all duration-300"
+						href="#"
+						class="obfuscated-phone inline-block bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition-all duration-300"
+						data-phone="MDYgNjQgODIgNTUgNTI="
 					>
 						📞 Appeler maintenant
 					</a>
@@ -310,3 +311,45 @@ import Layout from '../layouts/Layout.astro';
 	</div>
 
 </Layout>
+
+<!-- Script de protection anti-spam pour email et téléphone -->
+<script>
+  // Fonction de décodage Base64
+  function decodeBase64(str) {
+    return atob(str);
+  }
+
+  // Déobfuscation des emails et téléphones
+  document.addEventListener('DOMContentLoaded', () => {
+    // Protection des emails
+    const emailLinks = document.querySelectorAll('.obfuscated-email');
+    emailLinks.forEach(link => {
+      const encodedEmail = link.getAttribute('data-email');
+      if (encodedEmail) {
+        const email = decodeBase64(encodedEmail);
+        link.href = 'mailto:' + email;
+        link.textContent = email;
+        link.setAttribute('aria-label', 'Envoyer un email à ' + email);
+      }
+    });
+
+    // Protection des téléphones
+    const phoneLinks = document.querySelectorAll('.obfuscated-phone');
+    phoneLinks.forEach(link => {
+      const encodedPhone = link.getAttribute('data-phone');
+      if (encodedPhone) {
+        const phone = decodeBase64(encodedPhone);
+        const phoneClean = phone.replace(/\s/g, '');
+        link.href = 'tel:+33' + phoneClean.substring(1);
+
+        // Si le texte contient "Afficher", on le remplace par le numéro
+        if (link.textContent.includes('Afficher')) {
+          link.textContent = phone;
+        }
+        // Sinon (pour les boutons), on garde le texte existant
+
+        link.setAttribute('aria-label', 'Appeler le ' + phone);
+      }
+    });
+  });
+</script>
