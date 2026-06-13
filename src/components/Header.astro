@@ -5,20 +5,20 @@
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-md"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-xl border-b border-gray-200/70 shadow-sm"
 >
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
+    <div class="flex justify-between items-center h-16 md:h-20">
 
       <!-- Logo / Nom de l'entreprise -->
       <div class="flex items-center">
         <a href="/" class="flex items-center space-x-3 group">
           <span class="text-3xl group-hover:scale-110 transition-transform duration-300">⚡</span>
-          <div>
-            <span class="text-2xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
+          <div class="leading-none">
+            <span class="font-display text-2xl font-bold tracking-tight text-blue-600 group-hover:text-blue-700 transition-colors">
               Vilas Elec
             </span>
-            <p class="text-xs text-gray-600 hidden sm:block">Électricien Professionnel</p>
+            <p class="text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500 hidden sm:block mt-0.5">Électricien Professionnel</p>
           </div>
         </a>
       </div>
@@ -173,9 +173,9 @@
 
 <style>
   /* Style pour le backdrop blur (effet verre dépoli) */
-  @supports (backdrop-filter: blur(10px)) {
+  @supports (backdrop-filter: blur(20px)) {
     header {
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
     }
   }
 </style>

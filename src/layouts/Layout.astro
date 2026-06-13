@@ -49,8 +49,13 @@ import Footer from '../components/Footer.astro';
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Preconnect pour performances (Google Fonts si nécessaire plus tard) -->
+    <!-- Polices Google : Sora (titres) + Inter (texte) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+    />
 
     <!-- Netlify Identity Widget (pour l'authentification CMS) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>

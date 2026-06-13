@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* Polices modernes : Sora (titres, look technique/électricien) + Inter (texte) */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  /* Les titres utilisent la police d'affichage, avec un léger resserrement moderne */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
