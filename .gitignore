@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Originaux non optimisés (ne pas publier)
+image pour site/
