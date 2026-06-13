@@ -33,7 +33,7 @@ import Layout from '../layouts/Layout.astro';
 					<p class="text-gray-600 mb-8">Remplissez le formulaire ci-dessous et nous vous recontacterons dans les plus brefs délais.</p>
 
 					<!-- Formulaire (compatible Netlify Forms) -->
-					<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
+					<form name="contact" method="POST" action="/merci/" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
 						<!-- Champ honeypot caché pour anti-spam -->
 						<input type="hidden" name="form-name" value="contact" />
 						<p class="hidden">
