@@ -1,9 +1,66 @@
 @import "tailwindcss";
 
-/* Polices modernes : Sora (titres, look technique/électricien) + Inter (texte) */
+/* ============================================================
+   CHARTE COLORIMÉTRIQUE VILAS ELEC
+   3 couleurs de marque déclinées en ramps Tailwind :
+   - PRIMAIRE  = Violet #6E2E9C  → remappé sur le ramp `blue-*`
+                 (le bleu d'origine était la couleur primaire du site,
+                  donc bg-blue-600 / text-blue-900 / etc. = violet désormais)
+   - ACCENT    = Orange #F2960F  → remappé sur `yellow-*` et `orange-*`
+   - SECONDAIRE= Bleu  #2B6E9E   → nouveau ramp `steel-*` (bg-steel-600, etc.)
+   Neutres (gray), succès (green), danger (red) = défauts Tailwind conservés.
+   ============================================================ */
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+
+  /* PRIMAIRE — Violet (remplace l'ancien bleu, base #6E2E9C sur le 600) */
+  --color-blue-50:  #F4EFFA;
+  --color-blue-100: #E5D4F2;
+  --color-blue-200: #CDACE6;
+  --color-blue-300: #B07FD6;
+  --color-blue-400: #9255C2;
+  --color-blue-500: #7D3DAD;
+  --color-blue-600: #6E2E9C;
+  --color-blue-700: #581F7D;
+  --color-blue-800: #42175E;
+  --color-blue-900: #2C0F3F;
+
+  /* ACCENT — Orange (remplace le jaune, base #F2960F sur le 400) */
+  --color-yellow-50:  #FEF4E3;
+  --color-yellow-100: #FCE3B5;
+  --color-yellow-200: #F9CD83;
+  --color-yellow-300: #F6B547;
+  --color-yellow-400: #F2960F;
+  --color-yellow-500: #D8830B;
+  --color-yellow-600: #B86C09;
+  --color-yellow-700: #8F5408;
+  --color-yellow-800: #6B3F08;
+  --color-yellow-900: #472905;
+
+  /* ACCENT (alias orange, base #F2960F sur le 500) */
+  --color-orange-50:  #FEF4E3;
+  --color-orange-100: #FCE3B5;
+  --color-orange-200: #F9CD83;
+  --color-orange-300: #F6B547;
+  --color-orange-400: #F4A12C;
+  --color-orange-500: #F2960F;
+  --color-orange-600: #D8830B;
+  --color-orange-700: #A6640A;
+  --color-orange-800: #7C4B0A;
+  --color-orange-900: #533208;
+
+  /* SECONDAIRE — Bleu acier #2B6E9E (nouveau ramp `steel`, base sur le 500) */
+  --color-steel-50:  #EBF3F8;
+  --color-steel-100: #C6DEEC;
+  --color-steel-200: #9CC4DD;
+  --color-steel-300: #6FA7CB;
+  --color-steel-400: #4A8DB8;
+  --color-steel-500: #2B6E9E;
+  --color-steel-600: #245C84;
+  --color-steel-700: #1D4A6B;
+  --color-steel-800: #163850;
+  --color-steel-900: #0E2536;
 }
 
 @layer base {
